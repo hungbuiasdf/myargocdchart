@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.global.namespace }}-np
+  namespace: {{ .Values.argocdInstance.name }}
+spec:
+  type: NodePort
+  ports:
+    - name: {{ .Values.global.namespace }}-np
+      protocol: TCP
+      port: 443
+      targetPort: 8080
+      nodePort: 32006
+  selector:
+    app.kubernetes.io/name: {{ .Values.global.namespace }}-server

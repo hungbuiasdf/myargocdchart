@@ -1,0 +1,14 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: {{ .Values.global.namespace }}
+  namespace: {{ .Values.global.namespace }}
+spec:
+  # Cập nhật giá trị timeout.reconciliation
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      # Chỉnh timeout.reconciliation thành 10 phút
+      timeout: {{ .Values.argocdImageUpdater.timeout.reconciliation }}

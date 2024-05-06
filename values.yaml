@@ -1,0 +1,13 @@
+global:
+  # Default namespace for the ArgoCD OperatorGroup and related resources
+  namespace: argocd-1
+
+argocdInstance:
+  # ArgoCD instance configuration
+  name: argocd-1
+  # Specify ArgoCD configuration here...
+
+argocdImageUpdater:
+  enabled: true
+  timeout:
+    reconciliation: 30s
