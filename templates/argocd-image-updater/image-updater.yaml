@@ -68,6 +68,15 @@ metadata:
     app.kubernetes.io/part-of: argocd-image-updater
   name: argocd-image-updater-config
   namespace: {{ .Values.global.namespace }}
+data:
+  {{- with .Values.argocdImageUpdater.config.logLevel }}
+  log.level: {{ . | quote }}
+  {{- end }}
+  {{- with .Values.argocdImageUpdater.config.registries }}
+  registries.conf: |
+    registries:
+      {{- toYaml . | nindent 6 }}
+  {{- end }}
 ---
 apiVersion: v1
 kind: ConfigMap
